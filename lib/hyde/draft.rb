@@ -1,20 +1,21 @@
 require 'thor'
+require 'fileutils'
+
 require 'hyde/helpers'
 
-class Hyde < Thor
-  class Draft < Thor::Group
-    include Thor::Actions
-    include Hyde::Helpers
+class Draft < Thor::Group
+  include Thor::Actions
+  include Hyde::Helpers
 
-    argument :title, required: true, type: :string
+  argument :title, required: true, type: :string
 
-    def init
-      init_helper(title)
-    end
+  def init
+    init_helper(title)
+  end
 
-    def create_draft
-      File.open(draft_article_path, 'w') do |f|
-        f.write <<END_OF_TRANSMISSION
+  def create_draft
+    File.open(draft_article_path, 'w') do |f|
+      f.write <<END_OF_TRANSMISSION
 ---
 title: "#{title}"
 author: John Romkey
@@ -35,16 +36,15 @@ END_OF_TRANSMISSION
   end
 
   def create_image_directory
-    `/bin/mkdir assets/images/drafts/#{slug}`
+    FileUtils.mkdir(draft_assets_path)
   end
 
   def create_image
-    `/bin/cp assets/images/test-pattern.jpg #{draft_image_path}`
+    FileUtils.cp 'assets/images/test-pattern.jpg', draft_image_path
   end
 
   def create_teaser
-    `/bin/cp assets/images/test-pattern-teaser.jpg #{draft_teaser_path}`
-  end
+    FileUtils.cp 'assets/images/test-pattern-teaser.jpg', draft_teaser_path
   end
 end
 

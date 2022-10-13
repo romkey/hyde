@@ -1,18 +1,15 @@
 PATH
   remote: .
   specs:
-    hyde (0.0.1)
+    hyde (0.1.0)
       thor (~> 1.2.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
     bump (0.10.0)
-    cgi (0.3.3)
     diff-lcs (1.5.0)
     dotenv (2.8.1)
-    erb (2.2.3)
-      cgi
     rspec (3.11.0)
       rspec-core (~> 3.11.0)
       rspec-expectations (~> 3.11.0)
@@ -35,10 +32,9 @@ PLATFORMS
 DEPENDENCIES
   bump
   dotenv
-  erb
   hyde!
   rspec
   thor
 
 BUNDLED WITH
-   2.3.22
+   2.3.20
