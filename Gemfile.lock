@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hyde (0.1.0)
+    hyde (0.2.0)
       thor (~> 1.2.1)
 
 GEM
