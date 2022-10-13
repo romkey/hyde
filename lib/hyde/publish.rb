@@ -7,6 +7,10 @@ class Publish < Thor::Group
 
   argument :file, required: true, type: :string
 
+  class_option :commit, default: true, type: :boolean
+  class_option :push, default: false, type: :boolean
+  class_option :deploy, default: false, type: :boolean
+
   def init
     init_helper_filename(file)
   end
@@ -52,5 +56,22 @@ class Publish < Thor::Group
 
   def remove_draft_image_directory
     FileUtils.rm_r draft_assets_path
+  end
+
+  def commit
+    if options[:commit]
+      `git commit -a -m "published new article #{@slug}"`
+    end
+  end
+
+  def push
+    if options[:push]
+      `git push`
+    end
+  end
+
+  def deploy
+    if options[:deploy]
+    end
   end
 end

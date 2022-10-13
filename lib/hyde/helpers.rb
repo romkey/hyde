@@ -9,10 +9,9 @@ class Hyde < Thor
     attr_reader :year, :month, :day
 
     def init_helper(title)
-      @slug = title.downcase
       @draft = true
 
-      _process_slug
+      @slug = Hyde::Helpers.slugify title
 
       _finish_init
     end
@@ -37,17 +36,23 @@ class Hyde < Thor
       _finish_init      
     end
 
-private
-    def _process_slug
-      @slug.gsub! /[^a-z|A-Z|0-9| ]/, ''
+    def self.slugify(title)
+      slug = title.downcase
 
-      @slug.gsub! ' ', '-'
+      slug.gsub! /[^a-z|A-Z|0-9| ]/, ''
+
+      slug.gsub! ' ', '-'
 
       %w[the a an].each do |word|
+        slug.gsub! /^#{word}-/, ''
         slug.gsub! "-#{word}-", '-'
+        slug.gsub! /-#{word}$/, ''
       end
+
+      return slug
     end
 
+private
     def _finish_init
       if @draft
         d = Time.now.to_date
