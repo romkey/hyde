@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ['John Romkey']
   spec.email = ['58883+romkey@users.noreply.github.com']
 
-  spec.summary = 'Homebus command line interface'
-  spec.description = 'Command line (shell) interface for Homebus'
+  spec.summary = 'Jekyll draft and post manager'
+  spec.description = 'Generates Jekyll drafts and publishes them'
   spec.homepage = 'https://github.com/romkey/hyde'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 2.7.4'
@@ -24,6 +24,5 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.require_paths = ['lib']
 
-  # Uncomment to register a new dependency of your gem
   spec.add_dependency 'thor', '~> 1.2.1'
 end
