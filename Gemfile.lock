@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     hyde (0.3.0)
+      clipboard (~> 1.3.6)
       thor (~> 1.2.1)
 
 GEM
