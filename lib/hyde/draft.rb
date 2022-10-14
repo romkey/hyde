@@ -1,6 +1,8 @@
 require 'thor'
 require 'fileutils'
 
+require 'clipboard'
+
 require 'hyde/helpers'
 
 class Draft < Thor::Group
@@ -8,6 +10,7 @@ class Draft < Thor::Group
   include Hyde::Helpers
 
   argument :title, required: true, type: :string
+  class_option :paste, default: true, type: :boolean
 
   def init
     init_helper(title)
@@ -31,6 +34,7 @@ tags:
     - stars
     - garters
 ---
+#{Clipboard.paste}
 END_OF_TRANSMISSION
     end
   end
